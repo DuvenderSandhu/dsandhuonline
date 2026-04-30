@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>DSandhu · logistics & fleet operations software</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #FFFFFF; color: #18181B; line-height: 1.5; }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
+    .whatsapp-float { position: fixed; bottom: 2rem; right: 2rem; background: #25D366; color: white; padding: 0.8rem 1.6rem; border-radius: 60px; display: flex; align-items: center; gap: 0.7rem; text-decoration: none; font-weight: 600; box-shadow: 0 6px 16px rgba(37,211,102,0.25); z-index: 1000; transition: 0.2s; font-size: 0.9rem; border: none; }
+    .whatsapp-float:hover { transform: scale(1.02); background: #1da15a; }
+    .site-header { padding: 1.2rem 0 0.8rem; border-bottom: 1px solid #EDEAE5; background: white; }
+    .header-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .logo h1 { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.03em; color: #18181B; }
+    .logo p { font-size: 0.7rem; color: #6F6D68; font-weight: 500; }
+    .contact-header { background: transparent; border: 1px solid #D4D0CA; padding: 0.45rem 1.2rem; border-radius: 40px; text-decoration: none; font-weight: 500; color: #2C2C28; transition: 0.2s; display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; }
+    .contact-header:hover { background: #F8F7F4; border-color: #B1ACA3; }
+    .hero { padding: 3rem 0 2.5rem; background: #FFFFFF; }
+    .hero-badge { display: inline-block; background: #F3F1EE; padding: 0.25rem 1rem; border-radius: 60px; font-size: 0.7rem; font-weight: 600; color: #4A4842; margin-bottom: 1rem; }
+    .hero h1 { font-size: 3.2rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; max-width: 800px; margin-bottom: 1rem; }
+    .hero-highlight { background: linear-gradient(120deg, #FCE6DC 0%, #FCE6DC 40%, transparent 60%); padding: 0 0.2rem; }
+    .hero-sub { font-size: 1rem; color: #4B4944; max-width: 620px; margin-bottom: 1.5rem; }
+    .btn { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.7rem 1.6rem; border-radius: 60px; font-weight: 600; text-decoration: none; transition: 0.2s; font-size: 0.9rem; }
+    .btn-primary { background: #18181B; color: white; border: 1px solid #18181B; }
+    .btn-primary:hover { background: #2E2C30; transform: translateY(-2px); }
+    .btn-outline { background: transparent; border: 1px solid #D4D0CA; color: #18181B; }
+    .btn-outline:hover { border-color: #C74B1E; background: #FFF9F5; color: #C74B1E; }
+    .problem-grid { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin: 1.5rem 0 0.5rem; }
+    .problem-card { background: #FCFAF8; border-left: 3px solid #C74B1E; padding: 0.6rem 1rem; border-radius: 1rem; font-size: 0.8rem; color: #3C3B37; max-width: 280px; }
+    .products-section { padding: 3rem 0; background: #FEFDFC; border-top: 1px solid #F0EEEA; border-bottom: 1px solid #F0EEEA; }
+    .section-title { font-size: 1.8rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.5rem; text-align: center; }
+    .section-desc { text-align: center; color: #5F5D58; max-width: 640px; margin: 0 auto 2rem; font-size: 0.9rem; }
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.8rem; }
+    .product-card { background: white; border-radius: 1.5rem; border: 1px solid #EFECE6; overflow: hidden; transition: all 0.25s; cursor: pointer; }
+    .product-card:hover { transform: translateY(-4px); box-shadow: 0 16px 24px -12px rgba(0,0,0,0.08); }
+    .product-img { width: 100%; height: 150px; object-fit: cover; display: block; }
+    .product-content { padding: 1.2rem; }
+    .product-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.2rem; }
+    .client-name { font-size: 0.65rem; font-weight: 600; color: #7C7A74; margin: 0.25rem 0 0.4rem; }
+    .impact-stat { background: #F4F7F2; padding: 0.4rem 0.7rem; border-radius: 12px; font-size: 0.75rem; font-weight: 500; color: #2D5A2E; margin: 0.6rem 0; }
+    .demo-btn { display: inline-block; background: #18181B; color: white; padding: 0.45rem 0.9rem; border-radius: 40px; text-decoration: none; font-size: 0.7rem; font-weight: 600; margin-top: 0.5rem; transition: 0.2s; }
+    .demo-btn:hover { background: #C74B1E; }
+    .process-section { padding: 3rem 0; background: #FFFFFF; }
+    .process-steps { display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; margin-top: 1.5rem; }
+    .step { flex: 1; min-width: 200px; background: #FCFAF7; border-radius: 1.5rem; padding: 1.2rem; border: 1px solid #EFEBE4; text-align: center; }
+    .step-number { background: #18181B; color: white; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 60px; margin: 0 auto 0.8rem; font-weight: 700; font-size: 0.9rem; }
+    .step h3 { font-size: 1rem; margin-bottom: 0.4rem; }
+    .step p { font-size: 0.8rem; color: #5B5954; }
+    .custom-software { padding: 3rem 0; background: #FDFCFA; }
+    .custom-card { max-width: 800px; margin: 0 auto; background: white; border-radius: 2rem; padding: 2rem; border: 1px solid #EFEAE2; text-align: center; }
+    .problem-input { width: 100%; padding: 0.9rem; border-radius: 1rem; border: 1px solid #E1DBD2; background: #FEFCFA; font-family: monospace; font-size: 0.8rem; margin: 1rem 0; resize: vertical; }
+    .btn-custom { background: #C74B1E; border: none; color: white; margin-top: 0.3rem; }
+    .btn-custom:hover { background: #A83E18; }
+    .testimonial-section { padding: 3rem 0 2rem; background: #FEFCF9; border-top: 1px solid #F0EEE9; }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.8rem; max-width: 1000px; margin: 0 auto; }
+    .testimonial-card { background: white; border-radius: 1.5rem; padding: 1.3rem; border: 1px solid #EFECE6; }
+    .stars { font-size: 0.9rem; letter-spacing: 2px; color: #f5b042; margin-bottom: 0.5rem; }
+    .testimonial-text { font-size: 0.85rem; color: #2C2C28; margin: 0.6rem 0; font-style: italic; }
+    .testimonial-author { font-weight: 600; font-size: 0.75rem; color: #C74B1E; }
+    .lead-capture { padding: 2.5rem 0 3rem; background: linear-gradient(135deg, #FEFCF9 0%, #F9F6F0 100%); }
+    .lead-card { max-width: 600px; margin: 0 auto; background: white; border-radius: 2rem; padding: 2rem; border: 1px solid #EFEAE2; text-align: center; }
+    .free-badge { display: inline-block; background: #C74B1E; color: white; font-size: 0.7rem; font-weight: 700; padding: 0.2rem 1rem; border-radius: 40px; margin-bottom: 1rem; }
+    .lead-card h3 { font-size: 1.6rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .lead-card p { color: #5B5954; font-size: 0.9rem; margin-bottom: 1.5rem; }
+    .lead-form { display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center; margin-top: 0.5rem; }
+    .lead-form input { padding: 0.7rem 1rem; border-radius: 60px; border: 1px solid #D4D0CA; font-family: 'Inter', sans-serif; font-size: 0.8rem; min-width: 220px; background: white; }
+    .lead-form button { background: #18181B; color: white; border: none; padding: 0.7rem 1.6rem; border-radius: 60px; font-weight: 600; cursor: pointer; transition: 0.2s; font-size: 0.8rem; }
+    .lead-form button:hover { background: #C74B1E; transform: translateY(-2px); }
+    .privacy-note { font-size: 0.6rem; color: #A9A69F; margin-top: 1rem; }
+    .identity-contact { padding: 2.5rem 0 3rem; background: white; }
+    .identity-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; align-items: center; }
+    .avatar-area { text-align: center; }
+    .avatar-img { width: 100px; height: 100px; border-radius: 60px; object-fit: cover; margin: 0 auto 0.6rem; display: block; border: 3px solid #EFEAE2; }
+    .freelancer-badge { background: #F3F1EE; padding: 0.2rem 0.7rem; border-radius: 40px; font-size: 0.65rem; font-weight: 600; display: inline-block; margin: 0.2rem 0; }
+    .linkedin-link { display: inline-flex; align-items: center; gap: 0.4rem; text-decoration: none; color: #0A66C2; font-size: 0.65rem; margin-top: 0.2rem; }
+    .contact-mini h3 { font-size: 1.1rem; font-weight: 600; }
+    .contact-mini p { font-size: 0.8rem; margin: 0.4rem 0 0.8rem; }
+    .contact-mini a { display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; margin-right: 0.8rem; color: #2C2C28; background: #F0EFEC; padding: 0.35rem 0.9rem; border-radius: 40px; font-size: 0.75rem; }
+    .footer-note { text-align: center; font-size: 0.65rem; color: #A9A69F; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #EFEDE9; }
+    @media (max-width: 750px) { .hero h1 { font-size: 2.2rem; } .container { padding: 0 1.2rem; } .hero { padding: 2rem 0 1.5rem; } .products-section, .process-section, .custom-software, .testimonial-section, .lead-capture { padding: 2rem 0; } .lead-card h3 { font-size: 1.3rem; } .lead-form input { width: 100%; } }
+  </style>
+</head>
+<body>
+
+<a href="https://wa.me/919876543210?text=Hi%20DSandhu%2C%20I%20run%20a%20logistics%20company%20and%20need%20software%20help" class="whatsapp-float" target="_blank" id="floatingWhatsappBtn"><i class="fab fa-whatsapp"></i> Contact for Free Demo</a>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="logo"><h1>DSandhu</h1><p>solves logistics operational problems</p></div>
+    <a href="#contact-identity" class="contact-header" id="headerContactBtn">Contact</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container">
+      <div class="hero-badge">solo developer · 5 Star Freelancer on freelancer.com · built for logistics companies</div>
+      <h1>I'm <span class="hero-highlight">DSandhu</span> — I build software that fixes fleet & transport chaos.</h1>
+      <p class="hero-sub">Dispatch dashboards, driver tracking, POD automation, route planners. You stop chasing trips. I build the tool.</p>
+      <div class="hero-ctas">
+        <a href="#products" class="btn btn-primary" id="heroViewToolsBtn">See logistics tools →</a>
+        <a href="#custom-software" class="btn btn-outline" id="heroCustomBtn">Need something different?</a>
+      </div>
+      <div class="problem-grid">
+        <div class="problem-card">Fleet managers waste hours on manual trip sheets and WhatsApp updates.</div>
+        <div class="problem-card">Proof of delivery gets lost or takes days to collect.</div>
+        <div class="problem-card">No real-time visibility into where drivers are or when they'll arrive.</div>
+        <div class="problem-card">Route planning is guesswork, leading to fuel waste and delays.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="products" class="products-section">
+    <div class="container">
+      <div class="section-title">Logistics & fleet tools that remove friction</div>
+      <div class="section-desc">Built for real transport companies. Each solves a specific dispatch or delivery headache.</div>
+      <div class="products-grid" id="productsGrid">
+        <div class="product-card" data-product="Dispatch Dashboard">
+          <img class="product-img" src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop" alt="dispatch dashboard">
+          <div class="product-content"><div class="product-title">Dispatch Dashboard</div><div class="client-name">SpeedLine Logistics, Pune</div><div class="impact-stat">Real-time trip visibility · saved 15 hours/week in coordination</div><a href="https://wa.me/919876543210?text=Hi%20DSandhu%2C%20I%20want%20a%20FREE%20DEMO%20for%20the%20Dispatch%20Dashboard" class="demo-btn whatsapp-track" data-product-name="Dispatch Dashboard" target="_blank"><i class="fab fa-whatsapp"></i> Contact for Free Demo</a></div>
+        </div>
+        <div class="product-card" data-product="Driver GPS Tracker">
+          <img class="product-img" src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=600&h=400&fit=crop" alt="driver tracking">
+          <div class="product-content"><div class="product-title">Driver GPS & Status Tracker</div><div class="client-name">Metro Movers, Mumbai</div><div class="impact-stat">Live driver location · reduced customer calls by 80%</div><a href="https://wa.me/919876543210?text=Hi%20DSandhu%2C%20I%20want%20a%20FREE%20DEMO%20for%20Driver%20Tracker" class="demo-btn whatsapp-track" data-product-name="Driver GPS Tracker" target="_blank"><i class="fab fa-whatsapp"></i> Contact for Free Demo</a></div>
+        </div>
+        <div class="product-card" data-product="POD System">
+          <img class="product-img" src="https://images.unsplash.com/photo-1580674285054-bed31e145f59?w=600&h=400&fit=crop" alt="proof of delivery">
+          <div class="product-content"><div class="product-title">Proof of Delivery (POD) System</div><div class="client-name">Reliable Carriers, Delhi NCR</div><div class="impact-stat">Digital signatures & photos · 100% POD collection rate</div><a href="https://wa.me/919876543210?text=Hi%20DSandhu%2C%20I%20want%20a%20FREE%20DEMO%20for%20POD%20System" class="demo-btn whatsapp-track" data-product-name="POD System" target="_blank"><i class="fab fa-whatsapp"></i> Contact for Free Demo</a></div>
+        </div>
+        <div class="product-card" data-product="Route Optimizer">
+          <img class="product-img" src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&h=400&fit=crop" alt="route planner">
+          <div class="product-content"><div class="product-title">Route Optimization Tool</div><div class="client-name">City Logistics, Bangalore</div><div class="impact-stat">20% fuel savings · 30% faster deliveries</div><a href="https://wa.me/919876543210?text=Hi%20DSandhu%2C%20I%20want%20a%20FREE%20DEMO%20for%20Route%20Optimizer" class="demo-btn whatsapp-track" data-product-name="Route Optimizer" target="_blank"><i class="fab fa-whatsapp"></i> Contact for Free Demo</a></div>
+        </div>
+        <div class="product-card" data-product="WhatsApp Driver Hub">
+          <img class="product-img" src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600&h=400&fit=crop" alt="whatsapp for logistics">
+          <div class="product-content"><div class="product-title">WhatsApp Driver Communication Hub</div><div class="client-name">Express Couriers, Chennai</div><div class="impact-stat">Auto-log driver updates from WhatsApp · 10h/week saved</div><a href="https://wa.me/919876543210?text=Hi%20DSandhu%2C%20I%20want%20a%20FREE%20DEMO%20for%20WhatsApp%20Logistics%20Hub" class="demo-btn whatsapp-track" data-product-name="WhatsApp Driver Hub" target="_blank"><i class="fab fa-whatsapp"></i> Contact for Free Demo</a></div>
+        </div>
+        <div class="product-card" data-product="Fleet Maintenance Tracker">
+          <img class="product-img" src="https://images.unsplash.com/photo-1531494391840-6ae3fa9dfe9c?w=600&h=400&fit=crop" alt="fleet maintenance">
+          <div class="product-content"><div class="product-title">Fleet Maintenance Tracker</div><div class="client-name">SafeTrans Logistics, Hyderabad</div><div class="impact-stat">Service reminders · reduced breakdowns by 45%</div><a href="https://wa.me/919876543210?text=Hi%20DSandhu%2C%20I%20want%20a%20FREE%20DEMO%20for%20Fleet%20Maintenance%20Tracker" class="demo-btn whatsapp-track" data-product-name="Fleet Maintenance Tracker" target="_blank"><i class="fab fa-whatsapp"></i> Contact for Free Demo</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="process-section">
+    <div class="container"><div class="section-title">How work happens</div><div class="section-desc">Straightforward. No 50-page proposals.</div>
+      <div class="process-steps"><div class="step"><div class="step-number">1</div><h3>You explain your problem</h3><p>Quick chat on WhatsApp. Describe the repetitive task in your logistics operation.</p></div>
+      <div class="step"><div class="step-number">2</div><h3>I create a simple demo</h3><p>Within days, a working dashboard or automation for your fleet.</p></div>
+      <div class="step"><div class="step-number">3</div><h3>We improve together</h3><p>Refine until it removes the grind from your daily dispatch.</p></div></div>
+    </div>
+  </section>
+
+  <section id="custom-software" class="custom-software">
+    <div class="container custom-card"><i class="fas fa-puzzle-piece" style="font-size: 2rem; color: #C74B1E;"></i>
+      <h2 style="font-size: 1.7rem; margin: 0.5rem 0;">Need something different for your logistics company?</h2>
+      <p style="font-size: 0.9rem;">None of these demos match your exact workflow? Describe your repetitive logistics task — I will build a custom solution just for your fleet or dispatch center.</p>
+      <textarea id="problemInput" class="problem-input" rows="2" placeholder="Describe your logistics workflow problem...">We still use paper trip sheets. Drivers send location on WhatsApp and we manually update an Excel sheet. Takes 3 hours daily.</textarea>
+      <button id="sendProblemBtn" class="btn btn-custom" style="cursor:pointer;"><i class="fab fa-whatsapp"></i> Send problem via WhatsApp →</button>
+      <p style="margin-top: 0.8rem; font-size: 0.7rem; color: #8B887F;">Starting from ₹3,000 · flat pricing · 5-10 days delivery</p>
+    </div>
+  </section>
+
+  <section class="testimonial-section"><div class="container"><div class="section-title">Trusted by logistics owners</div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card"><div class="stars">★★★★★</div><div class="testimonial-text">"The dispatch dashboard changed our operations. I can see all 15 trucks in real time. No more calling drivers every hour. Best investment we made."</div><div class="testimonial-author">— Rajesh Mehta, owner of SpeedLine Logistics</div></div>
+      <div class="testimonial-card"><div class="stars">★★★★★</div><div class="testimonial-text">"Proof of delivery used to take days. Now customers sign on a phone and it's instantly in our system. No more lost PODs, no more payment delays."</div><div class="testimonial-author">— Neha Sharma, founder of Reliable Carriers</div></div>
+      <div class="testimonial-card"><div class="stars">★★★★★</div><div class="testimonial-text">"The route optimization tool cut our fuel costs by 20% in the first month alone. DSandhu understood exactly what we needed and delivered fast."</div><div class="testimonial-author">— Priya Nair, owner of City Logistics</div></div>
+    </div></div>
+  </section>
+
+  <section class="lead-capture">
+    <div class="container lead-card">
+      <div class="free-badge">FREE</div>
+      <h3>Get a free freight quote calculator</h3>
+      <p>Enter your email or WhatsApp. I'll send you the calculator — no strings attached.</p>
+      <form id="leadForm" class="lead-form">
+        <input type="email" id="leadEmail" placeholder="Your business email">
+        <input type="tel" id="leadWhatsapp" placeholder="WhatsApp number">
+        <button type="submit" id="submitLeadBtn"><i class="fab fa-whatsapp"></i> Send free tool →</button>
+      </form>
+      <div class="privacy-note">No spam. Just the tool. Your info is only used to send the calculator.</div>
+      <div id="leadFormMessage" style="margin-top: 0.8rem; font-size: 0.75rem;"></div>
+    </div>
+  </section>
+
+  <section id="contact-identity" class="identity-contact"><div class="container identity-grid">
+    <div class="avatar-area"><img class="avatar-img" src="https://media.licdn.com/dms/image/v2/D4D03AQFfWxZ3H0fe5g/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1699716358182?e=2147483647&v=beta&t=nF9qF9fKHMNFTc0lu_z19TbgXayszg0kk2GuoQ8Wwmg" alt="DSandhu" onerror="this.src='https://via.placeholder.com/100?text=DSandhu'"><div style="font-weight: 700; margin-top: 0.3rem;">DSandhu</div><div class="freelancer-badge"><i class="fas fa-star"></i> 5 Star Freelancer on freelancer.com</div><a href="https://in.linkedin.com/in/d-sandhu" class="linkedin-link" target="_blank"><i class="fab fa-linkedin"></i> linkedin.com/in/d-sandhu</a></div>
+    <div class="contact-mini"><h3>Let's talk</h3><p>One message. No calls unless you want. Just describe the logistics problem.</p><a href="https://wa.me/919876543210?text=Hi%20DSandhu%2C%20I%20run%20a%20logistics%20company%20and%20need%20help" target="_blank" id="contactWhatsappLink"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="mailto:dsandhu@work.local"><i class="far fa-envelope"></i> dsandhu@work.local</a><div style="margin-top: 0.8rem; font-size: 0.65rem; color: #A5A29C;">consistent branding · identifiable human</div></div>
+  </div><div class="footer-note"><span>I solve annoying logistics operational problems — not sell you subscriptions. Every tool removes a repetitive grind.</span></div></section>
+</main>
+
+<script>
+// ========== FIXED ANALYTICS USING IMAGE BEACON / sendBeacon ==========
+const ANALYTICS_ENDPOINT = "https://script.google.com/macros/s/AKfycbxx5q90dE8TBmT1QqeE1OILs6Znt74GSy5UdpFZqqwt4T42hr9wq_EQr8CJthudPW9B/exec";
+
+// Get SR code from URL
+const urlParams = new URLSearchParams(window.location.search);
+const srCode = urlParams.get('sr') || 'organic';
+const sessionId = 'sid_' + Date.now() + '_' + Math.random().toString(36).substr(2, 10);
+const sessionStart = Date.now();
+
+console.log('✅ Analytics initialized. SR:', srCode, 'Session:', sessionId);
+
+// Function to send analytics using sendBeacon (reliable for page unload) + image fallback
+function trackEvent(eventType, metadata = {}) {
+  const productName = metadata.product || metadata.product_name || '';
+  const buttonLabel = metadata.button_label || '';
+  const scrollPercentage = metadata.percentage || '';
+  const durationSeconds = metadata.duration_seconds || '';
+  
+  // Build URL with all parameters as query string (GET method - most reliable)
+  const params = new URLSearchParams({
+    timestamp: new Date().toISOString(),
+    sr: srCode,
+    session_id: sessionId,
+    event: eventType,
+    page_url: window.location.href,
+    product_name: productName,
+    button_label: buttonLabel,
+    duration_seconds: durationSeconds,
+    scroll_percentage: scrollPercentage,
+    session_duration_seconds: Math.floor((Date.now() - sessionStart) / 1000),
+    metadata: JSON.stringify(metadata)
+  });
+  
+  const url = `${ANALYTICS_ENDPOINT}?${params.toString()}`;
+  
+  console.log('📊 [Analytics]', eventType, { product: productName, button: buttonLabel });
+  
+  // Use sendBeacon for reliable delivery (works during page unload)
+  if (navigator.sendBeacon) {
+    navigator.sendBeacon(url);
+  } else {
+    // Fallback: create an image beacon
+    const img = new Image();
+    img.src = url;
+  }
+}
+
+// Track page view
+trackEvent('page_view');
+
+// Track scroll depth
+let scroll50Tracked = false, scroll80Tracked = false;
+window.addEventListener('scroll', () => {
+  const percent = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight * 100;
+  if (!scroll50Tracked && percent >= 50) {
+    scroll50Tracked = true;
+    trackEvent('scroll_50', { percentage: 50 });
+  }
+  if (!scroll80Tracked && percent >= 80) {
+    scroll80Tracked = true;
+    trackEvent('scroll_80', { percentage: 80 });
+  }
+});
+
+// Track product card clicks
+document.querySelectorAll('.product-card').forEach(card => {
+  card.addEventListener('click', (e) => {
+    if (e.target.closest('.demo-btn')) return;
+    const productName = card.getAttribute('data-product') || 'unknown';
+    trackEvent('product_card_click', { product: productName });
+  });
+});
+
+// Track WhatsApp clicks
+const whatsappBtns = document.querySelectorAll('.whatsapp-track, .demo-btn, .whatsapp-float, #sendProblemBtn, #contactWhatsappLink, #floatingWhatsappBtn, .contact-header, .btn-primary, .btn-outline, #heroViewToolsBtn, #heroCustomBtn, #headerContactBtn');
+whatsappBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    let productName = btn.getAttribute('data-product-name') || '';
+    if (!productName && btn.closest('.product-card')) {
+      productName = btn.closest('.product-card').getAttribute('data-product') || '';
+    }
+    let buttonLabel = btn.innerText.trim().substring(0, 60);
+    if (btn.id === 'sendProblemBtn') buttonLabel = 'Send custom problem';
+    if (btn.classList.contains('whatsapp-float')) buttonLabel = 'Floating WhatsApp';
+    if (btn.classList.contains('contact-header')) buttonLabel = 'Header Contact';
+    trackEvent('whatsapp_click', { product: productName, button_label: buttonLabel });
+  });
+});
+
+// Track session end
+window.addEventListener('beforeunload', () => {
+  const duration = Math.floor((Date.now() - sessionStart) / 1000);
+  trackEvent('session_end', { duration_seconds: duration });
+});
+
+// Lead form
+const leadForm = document.getElementById('leadForm');
+const leadEmail = document.getElementById('leadEmail');
+const leadWhatsapp = document.getElementById('leadWhatsapp');
+const leadFormMessage = document.getElementById('leadFormMessage');
+
+leadForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const email = leadEmail.value.trim();
+  const whatsapp = leadWhatsapp.value.trim();
+  if (!email && !whatsapp) {
+    leadFormMessage.style.color = "#C74B1E";
+    leadFormMessage.innerText = "Please enter email or WhatsApp number.";
+    return;
+  }
+  trackEvent('free_tool_request', { has_email: !!email, has_whatsapp: !!whatsapp });
+  let message = `Free Tool Request - Freight Quote Calculator%0A`;
+  if (email) message += `Email: ${email}%0A`;
+  if (whatsapp) message += `WhatsApp: ${whatsapp}%0A`;
+  message += `SR Code: ${srCode}%0ASession: ${sessionId}`;
+  window.open(`https://wa.me/919876543210?text=${message}`, '_blank');
+  leadFormMessage.style.color = "#2D5A2E";
+  leadFormMessage.innerText = "✓ Request sent! Check your WhatsApp/Email shortly.";
+  leadForm.reset();
+  setTimeout(() => { leadFormMessage.innerText = ""; }, 5000);
+});
+
+// Custom problem
+document.getElementById('sendProblemBtn').addEventListener('click', () => {
+  let problemText = document.getElementById('problemInput').value.trim();
+  if (!problemText) problemText = "I need a custom software solution for my logistics operations.";
+  const message = `Hi DSandhu, I need a custom solution. My task: ${problemText}%0A%0ASR: ${srCode}`;
+  window.open(`https://wa.me/919876543210?text=${encodeURIComponent(message)}`, '_blank');
+});
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    const hash = this.getAttribute('href');
+    if (hash === "#" || hash === "") return;
+    const target = document.querySelector(hash);
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      history.pushState(null, null, hash);
+    }
+  });
+});
+</script>
+</body>
+</html>
